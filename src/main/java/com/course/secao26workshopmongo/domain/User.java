@@ -18,7 +18,8 @@ public class User  implements Serializable {
 	private String email;
 	
 	// Associações da classes
-	
+
+
 	// Construtores
 	public User() {
 	}
