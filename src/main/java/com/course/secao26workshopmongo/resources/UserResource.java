@@ -47,9 +47,20 @@ public class UserResource {
 		User obj = us.fromDTO(objDTO);
 		obj = us.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-
+		
 		return ResponseEntity.created(uri).build(); 
 	}
+
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody UserDTO objDTO, @PathVariable String id) {
+		User obj = us.fromDTO(objDTO);
+		obj.setId(id);
+		obj = us.update(obj);
+		return ResponseEntity.noContent().build();	// 204 - codigo de uma operação sem conteudo
+	}
+	
+	
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable String id) {

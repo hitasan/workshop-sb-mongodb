@@ -31,6 +31,15 @@ public class UserService {
 	public User insert(User obj) {
 		return ur.insert(obj);
 	}
+
+
+	public User update(User obj) {
+		User newObj = findById(obj.getId());
+		newObj.setName(obj.getName());
+		newObj.setEmail(obj.getEmail());
+
+		return ur.save(newObj);
+	}
 	
 	
 	public void delete(String id) {
