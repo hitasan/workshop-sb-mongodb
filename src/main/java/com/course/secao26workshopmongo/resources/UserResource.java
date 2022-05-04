@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.course.secao26workshopmongo.domain.Post;
 import com.course.secao26workshopmongo.domain.User;
 import com.course.secao26workshopmongo.dto.UserDTO;
 import com.course.secao26workshopmongo.services.UserService;
@@ -39,6 +40,13 @@ public class UserResource {
 		User obj = us.findById(id);
 		
 		return ResponseEntity.ok().body( new UserDTO(obj) ); 
+	}
+
+	@RequestMapping(value = "/{id}/posts", method = RequestMethod.GET)
+	public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+		User obj = us.findById(id);
+		
+		return ResponseEntity.ok().body( obj.getPosts() ); 
 	}
 
 
